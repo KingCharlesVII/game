@@ -1,0 +1,9 @@
+SDL_SetHint(SDL_HINT_VIDEO_DRIVER, "x11"); ou SDL_VIDEODRIVER=x11 ./mon_programme
+
+Activer les messages d'erreur:
+SDL_SetLogPriorities(SDL_LOG_PRIORITY_VERBOSE);
+
+compiler et lier
+gcc main.c -o programme $(pkg-config --cflags --libs sdl3)
+
+voir drivers.c
