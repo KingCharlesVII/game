@@ -1,5 +1,6 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <SDL3_image/SDL_image.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,7 +46,7 @@ void  game_init(game_window *window) {
 bool    game_load_media(game_window *window) {
     char    *path;
 
-    path = "boo.bmp";
+    path = "../sprites/boo.bmp";
     window->hello_world = SDL_LoadBMP(path);
     if (!window->hello_world) {
         SDL_Log("Unable to load the image %s! SDL Error %s\n", path, SDL_GetError());
@@ -86,6 +87,7 @@ void    game_loop(game_window   *window) {
 
 int main(void) {
     game_window window;
+    SDL_Surface *ex = IMG_Load("../sprites/boo.bmp");
 
     game_init(&window);
     if (game_load_media(&window) == false) {
