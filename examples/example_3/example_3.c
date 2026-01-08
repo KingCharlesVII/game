@@ -1,37 +1,4 @@
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3_image/SDL_image.h>
-#include <stdio.h>
-#include <stdio.h>
-#include <stdbool.h>
 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
-
-typedef struct Size {
-    size_t  width;
-    size_t  height;
-}   Size;
-
-typedef struct Coordinates {
-    float  x;
-    float  y;
-}   Coordinates;
-
-typedef struct Game_Texture {
-    SDL_Texture     *texture;
-    Size        size;
-}   Game_Texture;
-
-typedef struct Game_Screen {
-    SDL_Window *window;
-    SDL_Renderer    *renderer;
-}   Game_Screen;
-
-typedef struct Game {
-    Game_Screen screen;
-    Game_Texture    texture;   
-}   Game;
 
 void    Size_Init(Size *this) {
     this->width = 0;
@@ -60,11 +27,7 @@ void    Game_InitSDL(void) {
     }
 }
 
-void    Game_Init(Game *this) {
-    Game_InitSDL();
-    Game_Texture_Init(&this->texture);
-    Game_Screen_Init(&this->screen);
-}
+
 
 
 
@@ -153,10 +116,7 @@ void    Game_Screen_Destroy(Game_Screen *this) {
     this->window = NULL;
 }
 
-void    Game_Quit(void) {
-    SDL_Quit();
-    exit(0);
-}
+
 
 void    Game_Destroy(Game *this) {
     Game_Texture_Destroy(this->texture);
@@ -181,20 +141,7 @@ void    Game_Screen_Update(Game_Screen *this) {
     SDL_RenderPresent(this->renderer);
 }
 
-void    Game_Loop(Game *game) {
-    bool    running;
-    SDL_Event event;
 
-    running = false;
-    SDL_Event_Init(&event);
-    while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_EVENT_QUIT) 
-                running = false;            
-        }
-    }
-
-}
 
 int     main(void)  {
     Game    game;
